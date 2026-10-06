@@ -3,19 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz Game</title>
+    <title>AI Quiz Game</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
+      <button id="settings-btn" class="icon-btn" title="Settings" aria-label="Settings">⚙️</button>
+
       <div class="screen active" id="start-screen">
         <h1>Quiz Time!</h1>
-        <p>Test your knowledge with these fun questions</p>
-        <button id="start-btn">Start Quiz</button>
+        <p>Play the classic quiz, or let AI make one on any topic</p>
+
+        <button id="start-btn">Play Classic Quiz</button>
+
+        <div class="divider"><span>or</span></div>
+
+        <form id="ai-form" class="ai-form">
+          <label for="topic-input">Quiz me on…</label>
+          <input id="topic-input" type="text" placeholder="e.g. Space, Cricket, JavaScript, Indian history" maxlength="80" required />
+
+          <div class="form-row">
+            <div>
+              <label for="difficulty-select">Difficulty</label>
+              <select id="difficulty-select">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+            <div>
+              <label for="count-select">Questions</label>
+              <select id="count-select">
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" id="generate-btn">✨ Generate AI Quiz</button>
+        </form>
+
+        <div id="error-box" class="error-box" hidden>
+          <p id="error-text"></p>
+          <button id="fallback-btn" class="secondary-btn">Play Classic instead</button>
+        </div>
+      </div>
+
+      <div class="screen" id="loading-screen">
+        <div class="spinner"></div>
+        <p id="loading-text">Generating your quiz…</p>
       </div>
 
       <div class="screen" id="quiz-screen">
         <div class="quiz-header">
+          <span id="mode-badge" class="mode-badge">Classic</span>
           <h2 id="question-text">Question goes here</h2>
           <div class="quiz-info">
             <p>
@@ -27,8 +68,11 @@
         </div>
 
         <div id="answers-container" class="answers-container">
-          <!-- Answer buttons will be insterted here from our js code later at some point -->
+          <!-- Answer buttons are inserted here from script.js -->
         </div>
+
+        <div id="explanation" class="explanation" hidden></div>
+        <button id="next-btn" hidden>Next</button>
 
         <div class="progress-bar">
           <div id="progress" class="progress"></div>
@@ -42,10 +86,42 @@
 
           <div id="result-message">Good job!</div>
         </div>
-        <button id="restart-btn">Restart Quiz</button>
+
+        <div id="review" class="review" hidden>
+          <h3>Questions you missed</h3>
+          <ul id="review-list"></ul>
+        </div>
+
+        <div class="result-actions">
+          <button id="restart-btn">Restart Quiz</button>
+          <button id="new-topic-btn" class="secondary-btn">Try another topic</button>
+        </div>
+      </div>
+
+      <div class="screen" id="settings-screen">
+        <h1>Settings</h1>
+        <div class="settings-form">
+          <label for="key-input">Gemini API key</label>
+          <input id="key-input" type="password" placeholder="Paste your key here" autocomplete="off" />
+          <p class="hint">
+            Get a free key at
+            <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>.
+            It is saved only in this browser and is sent only to Google.
+          </p>
+
+          <label for="model-input">Model</label>
+          <input id="model-input" type="text" placeholder="gemini-flash-latest" />
+          <p class="hint">Leave empty to use the default.</p>
+        </div>
+        <div class="result-actions">
+          <button id="save-settings-btn">Save</button>
+          <button id="clear-key-btn" class="secondary-btn">Remove key</button>
+        </div>
       </div>
     </div>
 
+    <script src="questions.js"></script>
+    <script src="ai.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-/* Bsic Reset  */
+/* Basic Reset  */
 
 * {
     margin: 0;
@@ -162,6 +162,205 @@ button:hover {
     background-color: #d45b28 ;
 }
 
+/* v2: AI MODE  */
+
+.icon-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    padding: 0.4rem;
+    font-size: 1.3rem;
+    z-index: 1;
+}
+
+.icon-btn:hover {
+    background-color: #f8f0e5;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #999;
+    margin: 25px 0 20px;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #eadbc8;
+}
+
+.ai-form,
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.ai-form label,
+.settings-form label {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.ai-form input,
+.ai-form select,
+.settings-form input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eadbc8;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+.ai-form input:focus,
+.ai-form select:focus,
+.settings-form input:focus {
+    outline: none;
+    border-color: #e86a33;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.form-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hint {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.hint a {
+    color: #e86a33;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    background-color: #f8f0e5;
+    color: #e86a33;
+    border: 2px solid #eadbc8;
+}
+
+.secondary-btn:hover {
+    background-color: #eadbc8;
+}
+
+.error-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fff0f0;
+    border: 2px solid #ffbdbd;
+    border-radius: 10px;
+    color: #dc3545;
+}
+
+.error-box p {
+    margin-bottom: 12px;
+}
+
+#settings-screen h1 {
+    color: #e86a33;
+    margin-bottom: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    margin: 2rem auto 1.5rem;
+    border: 5px solid #f8f0e5;
+    border-top-color: #e86a33;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-text {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.mode-badge {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #f8f0e5;
+    color: #e86a33;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+}
+
+.explanation {
+    background-color: #f8f0e5;
+    border-left: 4px solid #e86a33;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: left;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.review {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.review h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.review ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review li {
+    padding: 10px 12px;
+    border: 2px solid #eadbc8;
+    border-radius: 10px;
+    color: #555;
+}
+
+.result-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
 /* RESPONSIVE DESIGN  */
 
 @media (max-width:500px) {
@@ -180,6 +379,10 @@ button:hover {
     }
     .answer-btn {
         padding: 12px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
     }
 
     button {
